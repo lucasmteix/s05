@@ -34,6 +34,13 @@ function reservarArmario() {
   // Depois localizamos o armário emprestado na lista de armarios e mudamos o status do armário.
   let armarioEmprestado = armarios.find(armario => armario.id === armarioSorteado.id).status = false;
   
+  //Registra-se data e hora de emprestimo
+  const dataHoraEmprestimo = new Date(); //obtendo data e hora
+  armarios[armarioSorteado.id].dataHoraEmprestimo = dataHoraEmprestimo; //registrando em uma chave nova do objeto
+
+  //Calcula-se e registra-se data e hora de entrega
+  armarios[armarioSorteado.id].dataHoraEntrega = calcularDataHoraEntrega(dataHoraEmprestimo);
+
   // Finalmente, mudamos a pendencia do usuário para verdadeira.
   usuario.pendencia = true;
   
@@ -43,4 +50,14 @@ function reservarArmario() {
   console.log(usuario);
   console.log(armarios);
 
+}
+
+function calcularDataHoraEntrega(dataHoraEmprestimo){
+
+    const prazoEmDias = 1;
+    let dataHoraEntrega = new Date(dataHoraEmprestimo);
+
+    dataHoraEntrega.setDate(dataHoraEmprestimo.getDate() + prazoEmDias);
+
+    return dataHoraEntrega;
 }
