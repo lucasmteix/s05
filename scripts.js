@@ -32,32 +32,31 @@ function reservarArmario() {
   let armarioSorteado = armariosDisponiveis[Math.floor(Math.random() * armariosDisponiveis.length)];
   
   // Depois localizamos o armário emprestado na lista de armarios e mudamos o status do armário.
-  let armarioEmprestado = armarios.find(armario => armario.id === armarioSorteado.id).status = false;
+  let armarioEmprestado = armarios.find(armario => armario.id === armarioSorteado.id);
+  armarioEmprestado.status = false;
   
   //Registra-se data e hora de emprestimo
   const dataHoraEmprestimo = new Date(); //obtendo data e hora
-  armarios[armarioSorteado.id].dataHoraEmprestimo = dataHoraEmprestimo; //registrando em uma chave nova do objeto
+  armarioEmprestado.dataHoraEmprestimo = dataHoraEmprestimo; //registrando em uma chave nova do objeto
 
   //Calcula-se e registra-se data e hora de entrega
-  armarios[armarioSorteado.id].dataHoraEntrega = calcularDataHoraEntrega(dataHoraEmprestimo);
+  armarioEmprestado.dataHoraEntrega = calcularDataHoraEntrega(dataHoraEmprestimo);
 
   // Finalmente, mudamos a pendencia do usuário para verdadeira.
   usuario.pendencia = true;
   
-  // Impmimimos uma mensagem de reserva para o usuário.
+  // Impmimimos mensagens confirmando a reserva e o horario de entrega para o usuario
   document.getElementById("resultado").innerText = `Olá, ${usuario.nome}! O armário ${armarioSorteado.id} foi reservado com sucesso!`;
-
-  console.log(usuario);
-  console.log(armarios);
-
+  document.getElementById("dataHoraEntrega").innerText = `Data e hora de entrega: ${armarioEmprestado.dataHoraEntrega.toLocaleString("pt-BR")}`;
 }
 
+// Funcao que calcula e retorna a data e a hora de entrega, com base nas de emprestimo
 function calcularDataHoraEntrega(dataHoraEmprestimo){
 
-    const prazoEmDias = 1;
-    let dataHoraEntrega = new Date(dataHoraEmprestimo);
+  const prazoEmDias = 1;
+  let dataHoraEntrega = new Date(dataHoraEmprestimo);
 
-    dataHoraEntrega.setDate(dataHoraEmprestimo.getDate() + prazoEmDias);
+  dataHoraEntrega.setDate(dataHoraEmprestimo.getDate() + prazoEmDias);
 
-    return dataHoraEntrega;
+  return dataHoraEntrega;
 }
