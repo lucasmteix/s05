@@ -45,9 +45,8 @@ function reservarArmario() {
   // Finalmente, mudamos a pendencia do usuário para verdadeira.
   usuario.pendencia = true;
   
-  // Impmimimos mensagens confirmando a reserva e o horario de entrega para o usuario
-  document.getElementById("resultado").innerText = `Olá, ${usuario.nome}! O armário ${armarioSorteado.id} foi reservado com sucesso!`;
-  document.getElementById("dataHoraEntrega").innerText = `Data e hora de entrega: ${armarioEmprestado.dataHoraEntrega.toLocaleString("pt-BR")}`;
+  // Impmimimos uma mensagem confirmando a reserva e o horario de entrega para o usuario
+  document.getElementById("resultado").innerText = `Olá, ${usuario.nome}! O armário ${armarioSorteado.id} foi reservado com sucesso! Data e hora de entrega: ${armarioEmprestado.dataHoraEntrega.toLocaleString("pt-BR")}`;
 }
 
 // Funcao que calcula e retorna a data e a hora de entrega, com base nas de emprestimo
