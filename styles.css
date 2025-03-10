@@ -1,0 +1,42 @@
+#header {
+
+    display: flex;
+    justify-content: center;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    margin: 16px;
+}
+
+#mensagens {
+
+    display: flex;
+    justify-content: center;
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    height: 200px;
+    margin: 16px;
+}
+
+#aulas {
+
+    display: flex;
+    justify-content: center;
+    background-color: greenyellow;
+    color: black;
+    font-weight: bold;
+    height: 400px;
+    margin: 16px;
+}
+
+#noticias {
+
+    display: flex;
+    justify-content: center;
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    height: 600px;
+    margin: 16px;
+}
